@@ -24,11 +24,27 @@ namespace Lab1
             //разместите здесь вашу реализацию обработчика.
             HttpRequest req = context.Request;
             HttpResponse res = context.Response;
-            var x = int.Parse(req.Form["x"]);
-            var y = int.Parse(req.Form["y"]);
-            var sum = x + y;
             res.AddHeader("Content-Type", "text/html");
-            res.Write($"<h1>{x} + {y} = {sum}</h1>");
+
+            if (req.HttpMethod == "GET")
+            {
+                res.ContentType = "text/html";
+                res.WriteFile("form4.html");
+            }
+            else if (req.HttpMethod == "POST")
+            {
+                
+                    var x = int.Parse(req.Form["x"]);
+                    var y = int.Parse(req.Form["y"]);
+                    var sum = x + y;
+                    res.Write($"<h2>{x} + {y} = {sum}</h2>");
+            }
+            else
+            {
+                res.StatusCode = 405;
+                res.AddHeader("Content-Type", "text/html");
+                res.Write("<h1>Error.</h1>");
+            }
         }
 
         #endregion
