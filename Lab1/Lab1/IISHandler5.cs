@@ -33,14 +33,21 @@ namespace Lab1
             }
             else if(req.HttpMethod == "POST")
             {
-                var x = int.Parse(req.Form["x"]);
-                var y = int.Parse(req.Form["y"]);
-                var mult1 = x * y;
-                res.Write($"<h1>{x} * {y} = {mult1}</h1>");
+                try
+                {
+                    var x = int.Parse(req.Form["x"]);
+                    var y = int.Parse(req.Form["y"]);
+                    var mult1 = x * y;
+                    res.Write(mult1);
+                }
+                catch
+                {
+                    res.StatusCode = 400;
+                    res.AddHeader("Content-Type", "text/html");
+                    res.Write("<h2>X and Y parameters are not provided.<h2>");
+                }
+
             }
-           
-            
-            
         }
 
         #endregion

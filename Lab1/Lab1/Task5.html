@@ -5,32 +5,34 @@
     <title>Lab1.Task5</title>
 </head>
 <body>
-    <input type="number" name="x" id="x" />
-    <input type="number" name="y" id="y" />
-    <input type="submit" value="mult1" onclick="mult()" />
-    <p id="result"></p>
+    <form id="form5" onsubmit="return getNumbMult()">
+        <h5>Введите два числа:</h5>
+        <input type="number" name="x" required />
+        <input type="number" name="y" required />
+        <button type="submit">Умножить</button>
+        <h5>Результат:</h5>
+        <input type="number" readonly id="inner" />
+    </form>
+    
     <script>
-        function mult() {
-            let request = new XMLHttpRequest();
+        function getNumbMult() {
+            let formData = new FormData(document.getElementById("form5")); // объект предоставляющий данные HTML-формы
+            console.log('formData=', formData);
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://localhost:44394/mult1', false);
+            xhr.send(formData);
 
-            var x = document.getElementById('x').value;
-            var y = document.getElementById('y').value;
+            let input = document.getElementById("inner");
+            if (xhr.status == 200) {
+                input.value = xhr.responseText;
+                console.log(xhr.responseText);
+            }
+            else
+                console.log("Ответ сервера: " + xhr.statusText);
 
-            var body = 'X=' + x + '&Y=' + y;
-
-            request.open('POST', '/mult1', true);
-            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded') //устанавливает зоголовок http-запроса
-            request.onreadystatechange = () => { //обработчик события, вызываемый когда происходит событие
-                if (request.readyState === 4) {
-                    if (request.status === 200) {
-                        document.getElementById('result').innerHTML = request.responseText;
-                    } else {
-                        alert(request.status);
-                    }
-                }
-            };
-            request.send(body);
+            return false;
         }
+
     </script>
 </body>
 </html>

@@ -20,8 +20,8 @@ namespace WithTask4
 
             var formContent = new FormUrlEncodedContent(new[]
             {
-            new KeyValuePair<string, string>("x", x),
-            new KeyValuePair<string, string>("y", y)
+                new KeyValuePair<string, string>("x", x),
+                new KeyValuePair<string, string>("y", y)
             });
 
             HttpClient client = new HttpClient();

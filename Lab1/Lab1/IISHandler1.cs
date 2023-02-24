@@ -3,7 +3,7 @@ using System.Web;
 
 namespace Lab1
 {
-    public class IISHandler1 : IHttpHandler
+    public class IISHandler1 : IHttpHandler //Интерфейс для асинхронной обработки веб-запросов HTTP с помощью польз. обработчиков
     {
         /// <summary>
         /// Вам потребуется настроить этот обработчик в файле Web.config вашего 
@@ -12,14 +12,15 @@ namespace Lab1
         /// </summary>
         #region Члены IHttpHandler
 
-        public bool IsReusable
+        public bool IsReusable //IsReusable: это свойство указывает, будет ли данный обработчик использоваться другими запросами. 
         {
             // Верните значение false в том случае, если ваш управляемый обработчик не может быть повторно использован для другого запроса.
             // Обычно значение false соответствует случаю, когда некоторые данные о состоянии сохранены по запросу.
             get { return true; }
         }
 
-        public void ProcessRequest(HttpContext context)
+        public void ProcessRequest(HttpContext context) //данный метод в качестве параметра принимает объект
+                                                        //контекста запроса HttpContext и генерирует ответ клиенту
         {
             //разместите здесь вашу реализацию обработчика.
             HttpRequest req = context.Request;

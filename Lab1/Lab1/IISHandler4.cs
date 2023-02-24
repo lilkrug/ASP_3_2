@@ -26,19 +26,14 @@ namespace Lab1
             HttpResponse res = context.Response;
             res.AddHeader("Content-Type", "text/html");
 
-            if (req.HttpMethod == "GET")
+            if (req.HttpMethod == "POST")
             {
-                res.ContentType = "text/html";
-                res.WriteFile("form4.html");
+                var x = int.Parse(req.Form["x"]);
+                var y = int.Parse(req.Form["y"]);
+                var sum = x + y;
+                res.Write($"<h2>{x} + {y} = {sum}</h2>");
             }
-            else if (req.HttpMethod == "POST")
-            {
-                
-                    var x = int.Parse(req.Form["x"]);
-                    var y = int.Parse(req.Form["y"]);
-                    var sum = x + y;
-                    res.Write($"<h2>{x} + {y} = {sum}</h2>");
-            }
+
             else
             {
                 res.StatusCode = 405;

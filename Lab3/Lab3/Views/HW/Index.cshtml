@@ -1,0 +1,28 @@
+﻿@using Lab3.Models
+@{
+    Layout = null;
+    Data[] data = ViewBag.getall;
+    Data[] find2 = ViewBag.find2;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h1>Hello World</h1>
+
+        <h2>GetAll</h2>
+        <p> @data[0].Id. @data[0].Name @data[0].Spec </p>
+        <p> @data[1].Id. @data[1].Name @data[1].Spec </p>
+        <p> @data[2].Id. @data[2].Name @data[2].Spec </p>
+
+        <h2>Find(2)</h2>    
+        <p> @find2.Id. @find2.Name @find2.Spec </p>
+    </div>
+</body>
+</html>
