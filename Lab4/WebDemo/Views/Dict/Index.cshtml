@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+    List<Phonebook.Models.HandbookRecord> handbookRecords = ViewBag.getall;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MVC_3</title>
+</head>
+<body>
+    <div>
+        <h3>Телефонный справочник</h3>
+        <p><a href="~/Dict/Add">Добавить запись</a></p>
+        <table border="1">
+            <tr>
+                <td><p>ID</p></td>
+                <td><p>Фамилия</p></td>
+                <td><p>Номер</p></td>
+                <td><p>Действия</p></td>
+            </tr>
+            @foreach (var b in handbookRecords)
+            {
+                <tr>
+                    <td><p>@b.Id</p></td>
+                    <td><p>@b.LastName</p></td>
+                    <td><p>@b.Phone</p></td>
+                    <td>
+                        <p><a href="~/Dict/Update/?id=@b.Id">Изменить</a></p>
+                        <p><a href="~/Dict/Delete/?id=@b.Id">Удалить</a></p>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

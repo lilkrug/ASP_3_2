@@ -1,0 +1,49 @@
+﻿@model Lab8a.Model.Phone
+
+@{ ViewBag.Title = "Add"; }
+
+
+@section Header
+{
+    <header>
+        <h2>Add</h2>
+    </header>
+}
+
+@using (Html.BeginForm())
+{
+
+<hr />
+@Html.ValidationSummary(true)
+    <div class="">
+        @Html.LabelFor(model => model.Name)
+        <div class="">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name, "")
+        </div>
+    </div>
+
+<div class="">
+    @Html.LabelFor(model => model.Number)
+    <div class="">
+        @Html.EditorFor(model => model.Number)
+        @Html.ValidationMessageFor(model => model.Number, "")
+    </div>
+</div>
+
+<div class="">
+<div>
+    <input type="submit" value="Add" />
+</div>
+</div>}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Phone")
+</div>
+
+
+@section Footer
+{
+    <footer>
+    </footer>
+}
